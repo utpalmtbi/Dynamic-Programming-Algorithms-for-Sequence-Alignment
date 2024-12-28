@@ -1,0 +1,35 @@
+fill_matrices <- function(seq1, seq2, score_matrix, traceback_matrix, match_score, mismatch_score, gap_penalty, alignment_type) {
+  n <- nrow(score_matrix)
+  m <- ncol(score_matrix)
+  max_score <- 0
+  max_pos <- c(0, 0)
+  
+  for (i in 2:n) {
+    for (j in 2:m) {
+      match <- score_matrix[i - 1, j - 1] + 
+        ifelse(substr(seq1, i - 1, i - 1) == substr(seq2, j - 1, j - 1), match_score, mismatch_score)
+      delete <- score_matrix[i - 1, j] + gap_penalty
+      insert <- score_matrix[i, j - 1] + gap_penalty
+      
+      if (alignment_type == "Global") {
+        score_matrix[i, j] <- max(match, delete, insert)
+      } else {
+        score_matrix[i, j] <- max(0, match, delete, insert)
+        if (score_matrix[i, j] > max_score) {
+          max_score <- score_matrix[i, j]
+          max_pos <- c(i, j)
+        }
+      }
+      
+      if (score_matrix[i, j] == match) {
+        traceback_matrix[i, j] <- 0
+      } else if (score_matrix[i, j] == delete) {
+        traceback_matrix[i, j] <- 1
+      } else {
+        traceback_matrix[i, j] <- 2
+      }
+    }
+  }
+  
+  list(score_matrix = score_matrix, traceback_matrix = traceback_matrix, max_score = max_score, max_pos = max_pos)
+}

@@ -1,0 +1,21 @@
+sequence_alignment <- function(seq1, seq2, alignment_type, match_score, mismatch_score, gap_penalty) {
+  matrices <- initialize_matrices(seq1, seq2, gap_penalty, alignment_type)
+  filled <- fill_matrices(seq1, seq2, matrices$score_matrix, matrices$traceback_matrix, 
+                          match_score, mismatch_score, gap_penalty, alignment_type)
+  
+  aligned <- traceback(seq1, seq2, filled$score_matrix, filled$traceback_matrix, 
+                       alignment_type, filled$max_pos)
+  
+  cat("Alignment:\n")
+  cat(aligned$aligned_seq1, "\n")
+  cat(aligned$aligned_seq2, "\n\n")
+  
+  cat("Score Matrix:\n")
+  print(filled$score_matrix)
+  
+  cat("\nTraceback Matrix:\n")
+  print(filled$traceback_matrix)
+  
+  cat("\nExplanation:\n")
+  cat("The score matrix shows alignment scores. The traceback matrix indicates the path for optimal alignment: 0=diagonal (match/mismatch), 1=up (gap in seq2), 2=left (gap in seq1).\n")
+}
