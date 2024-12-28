@@ -12,4 +12,4 @@ This repository provides R scripts for performing **Global** and **Local Sequenc
 - No additional packages are required.
 
 ## Usage
-Run script.R after providing the sequences, algorithm choice, and scores for match, mismatch, and gap. Default values of each parameter are provided for convenience.
+Run **script.R** after providing the sequences, algorithm choice, and scores for match, mismatch, and gap. Default values of each parameter are provided for convenience.
