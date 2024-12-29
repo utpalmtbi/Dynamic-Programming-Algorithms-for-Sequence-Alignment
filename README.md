@@ -1,5 +1,5 @@
 # Dynamic-Programming-Algorithms-for-Sequence-Alignment
-This repository provides R scripts for performing **Global** and **Local Sequence Alignment**. The scripts allow users to input custom sequences, alignment type, and scoring parameters, while providing default values for convenience. These codes are part of this blog post: https://sites.google.com/view/ublab-org/blog/sequence-alignments?authuser=0
+This repository provides R scripts for performing **Global** and **Local Sequence Alignment**. The scripts allow users to input custom sequences, alignment type, and scoring parameters, while providing default values for convenience. These codes are part of this blog post: https://www.bakshilab.org/blog/dynamic-programming-algorithms
 
 ## Features
 - Supports **Global** and **Local Alignment**.
